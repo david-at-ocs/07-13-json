@@ -55,7 +55,11 @@ class Assignment
     self.title.blank?
     self.description.blank?
   end
-    
   
+  # def get_resources(id)
+  #   results = CONNECTION.execute("SELECT * FROM resources WHERE assignment_id = #{@id};")
+  #   return results
+  # end
+    
   
 end

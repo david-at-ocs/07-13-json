@@ -54,13 +54,19 @@ module DatabaseClassMethods
     table_name = self.to_s.pluralize.underscore
     
     results = CONNECTION.execute("SELECT * FROM #{table_name}")
-    results_as_objects = []
+    # results_as_objects = []
     
-    results.each do |result_hash|
-      results_as_objects << self.new(result_hash)
-    end
-    return results_as_objects
+    # results.each do |result_hash|
+   #    results_as_objects << self.new(result_hash)
+   #  end
+    # return results_as_objects
   end
+  
+  def get_resources(id)
+    results = CONNECTION.execute("SELECT * FROM resources WHERE assignment_id = #{id};")
+    return results
+  end
+
   
   
 end

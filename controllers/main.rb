@@ -5,8 +5,9 @@
 
 get "/" do
   @assignments = Assignment.all
+  
   json @assignments
-  binding.pry
+  # binding.pry
 end
 
 get "/assignments" do

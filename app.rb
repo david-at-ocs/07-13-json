@@ -17,6 +17,6 @@ require_relative "models/resource.rb"
 
 
 # Controllers
-require_relative "controllers/main.rb"
+# require_relative "controllers/main.rb"
 require_relative "controllers/api_controller.rb"
 
