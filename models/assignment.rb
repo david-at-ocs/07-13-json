@@ -1,5 +1,5 @@
-require_relative "../database_class_methods.rb"
-require_relative "../database_instance_methods.rb"
+require_relative "database_class_methods.rb"
+require_relative "database_instance_methods.rb"
 
 class Assignment  
   attr_reader :id
@@ -56,10 +56,20 @@ class Assignment
     self.description.blank?
   end
   
-  # def get_resources(id)
-  #   results = CONNECTION.execute("SELECT * FROM resources WHERE assignment_id = #{@id};")
-  #   return results
-  # end
+  def self.get_resources(id)
+    results = CONNECTION.execute("SELECT * FROM resources WHERE assignment_id = #{id};")
+    return results
+  end 
+  
+  def make_hash
+    variables = self.instance_variables
+    attr_hash = {}
     
+    variables.each do |var|
+      attr_hash["#{var.slice(1..-1)}"] = self.send("#{var.slice(1..-1)}")
+    end
+    
+    attr_hash
+  end
   
 end

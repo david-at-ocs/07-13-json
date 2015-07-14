@@ -1,0 +1,18 @@
+<header>
+  <h1>Delete Assignment</h1>
+  <% if @error %>
+    <h3>There was an error deleting the beer. Please try again.</h3>
+  <% end %>
+</header>
+<ul>
+  <li><h3>Delete Assignment</h3>
+    <form action="/api/delete_beer">
+      <select name="assignment_id">
+        <% @all_assignments.each do |assignment| %>
+          <option value="<%= assignment.id %>"><%= assignment.id %>. <%= assignment.title %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="Delete Assignment">
+    </form>
+  </li>
+</ul>
