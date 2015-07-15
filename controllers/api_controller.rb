@@ -9,7 +9,6 @@
 
 get "/api/assignments" do
   assignments = Assignment.all
-  
   @assign_array = []  
   assignments.each do |assign|
     @assign_array << assign.make_hash
@@ -40,18 +39,18 @@ get "/api/new_assignment" do
 end
 
 
-get "/api/delete_assignment_form" do
+get "/delete_assignment_form" do
   @all_assignments = Assignment.all
   erb :"delete_assignment_form"
 end
 
-get "/api/delete_beer" do
-  @beer_to_delete = Beer.find(params["beer_id"].to_i)
-  Rating.delete_beer_ratings(params["beer_id"].to_i)
-  if @beer_to_delete.delete
-    erb :"beers/beer_deleted"
+get "/delete_assignment" do
+  @assignment_to_delete = Assignment.find(params["assignment_id"].to_i)
+  # Resource.delete(params["assignment_id"].to_i)
+  if @assignment_to_delete.delete
+    "Assignment Deleted"
   else
     @error = true
-    erb :"beers/edit_beer_form"
+    erb :"delete_assignment_form"
   end
 end

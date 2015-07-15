@@ -6,7 +6,7 @@
 </header>
 <ul>
   <li><h3>Delete Assignment</h3>
-    <form action="/api/delete_beer">
+    <form action="/delete_assignment">
       <select name="assignment_id">
         <% @all_assignments.each do |assignment| %>
           <option value="<%= assignment.id %>"><%= assignment.id %>. <%= assignment.title %></option>

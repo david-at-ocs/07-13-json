@@ -30,4 +30,15 @@ module DatabaseInstanceMethods
     CONNECTION.execute("DELETE FROM #{table_name} WHERE id = #{@id};")    
   end  
   
+  def make_hash
+    variables = self.instance_variables
+    attr_hash = {}
+    
+    variables.each do |var|
+      attr_hash["#{var.slice(1..-1)}"] = self.send("#{var.slice(1..-1)}")
+    end
+    
+    attr_hash
+  end
+  
 end
