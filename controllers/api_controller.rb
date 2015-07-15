@@ -44,7 +44,7 @@ end
 get "/assignment_add" do
   new_assignment_id = Assignment.add({"title" => params["title"], "description" => params["description"], "github_link" => params["github_link"]})
   if new_assignment_id
-    @new_assignment = Assignment.find(id)
+    @new_assignment = Assignment.find(new_assignment_id)
     @new_assignment_hash = @new_assignment.make_hash
     json @new_assignment_hash
   else
