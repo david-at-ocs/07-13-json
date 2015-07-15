@@ -1,23 +1,13 @@
 <header>
-  <h1>Add Beer</h1>
+  <h1>Add Assignment</h1>
   <% if @error %>
-    <h3>There was an error adding the beer. Please try again.</h3>
+    <h3>There was an error adding the assignment. Please try again.</h3>
   <% end %>
 </header>
 
-<form action="/beer/add">
-  <input type="text" placeholder="Beer Name" name="beer_name">
-  <select name="brewery_id">
-    <% @all_breweries.each do |brewery| %>
-      <option value="<%= brewery.id %>"><%= brewery.id %>. <%= brewery.brewery_name %></option>
-    <% end %>
-  </select>
-  <input type="submit" value="Add Beer">
+<form action="/assignment_add">
+  <input type="text" placeholder="Title" name="title">
+  <input type="text" placeholder="Description" name="description">
+  <input type="text" placeholder="Github Link" name="github_link">
+  <input type="submit" value="Add Assignment">
 </form>
-
-<nav>
-  <ul>
-    <li><a href="beers_menu">Beer menu</a></li>
-    <li><a href="/homepage">Homepage</a></li>
-  </ul>
-</nav>

@@ -31,11 +31,26 @@ get "/api/assignment_links/:id" do
   json(@resource)
 end
 
-get "/api/new_assignment" do
-  @new_assignment_id = Assignment.add({"title" => "new_assignment", "description" => "this is a description", "github_link" => "http://www.google.com"})
-  @assignment = Assignment.find(@new_assignment_id)
-  assignment_hash = @assignment.instance_variables.each_with_object({}) { |var, hash| hash[var.to_s.delete("@")] = @assignment.instance_variable_get(var) }
-  json assignment_hash
+# --------------------------------------------------- crud stuff ------------------------------------------------
+
+get "/add_assignments" do
+  # @new_assignment_id = Assignment.add({"title" => "new_assignment", "description" => "this is a description", "github_link" => "http://www.google.com"})
+  # @assignment = Assignment.find(@new_assignment_id)
+  # assignment_hash = @assignment.instance_variables.each_with_object({}) { |var, hash| hash[var.to_s.delete("@")] = @assignment.instance_variable_get(var) }
+  # json assignment_hash
+  erb :"add_assignment_form"
+end
+
+get "/assignment_add" do
+  new_assignment_id = Assignment.add({"title" => params["title"], "description" => params["description"], "github_link" => params["github_link"]})
+  if new_assignment_id
+    @new_assignment = Assignment.find(id)
+    @new_assignment_hash = @new_assignment.make_hash
+    json @new_assignment_hash
+  else
+    @error = true
+    erb :"add_assignments"
+  end
 end
 
 
