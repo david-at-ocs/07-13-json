@@ -34,10 +34,6 @@ end
 # --------------------------------------------------- crud stuff ------------------------------------------------
 
 get "/add_assignments" do
-  # @new_assignment_id = Assignment.add({"title" => "new_assignment", "description" => "this is a description", "github_link" => "http://www.google.com"})
-  # @assignment = Assignment.find(@new_assignment_id)
-  # assignment_hash = @assignment.instance_variables.each_with_object({}) { |var, hash| hash[var.to_s.delete("@")] = @assignment.instance_variable_get(var) }
-  # json assignment_hash
   erb :"add_assignment_form"
 end
 
@@ -84,6 +80,24 @@ get "/resource_added" do
   else
     @error = true
     erb :"add_assignments"
+  end
+end
+
+get "/add_collaborator" do
+  @all_assignments = Assignment.all
+  erb :"add_collaborator_form"
+end
+
+get "/collaborator_added" do
+  new_collab_id = Collaborator.add({"name" => params["name"], "assignment_id" => params["assignment_id"]})
+  if new_collab_id
+    @new_collab = Collaborator.find(new_collab_id)
+    @new_collab_hash = @new_collab.make_hash
+    json @new_collab_hash
+  else
+    @error = true
+    @all_assignments = Assignment.all
+    erb :"add_collaborator_form"
   end
 end
 

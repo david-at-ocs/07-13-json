@@ -1,0 +1,24 @@
+<header>
+  <h1>Add Collaborator</h1>
+  <% if @error %>
+    <h3>There was an error adding the collaborator. Please try again.</h3>
+  <% end %>
+</header>
+
+<form action="/collaborator_added">
+  <!-- <input type="text" placeholder="Name" name="name"> -->
+  <select name="name">
+    <option value="Chris">Chris</option>
+    <option value="Kasey">Kasey</option>
+    <option value="Andrew">Andrew</option>
+    <option value="Jeanie">Jeanie</option>
+    <option value="Kristin">Kristin</option>
+    <option value="Lisa">Lisa</option>
+  </select>
+  <select name="assignment_id">
+    <% @all_assignments.each do |assignment| %>
+      <option value="<%= assignment.id %>"><%= assignment.id %>. <%= assignment.title %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Add Collaborator">
+</form>

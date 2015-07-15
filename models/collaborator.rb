@@ -30,7 +30,7 @@ class Collaborator
   # Calls 'add_to_database' in class Module to do database work
   # Returns the Integer ID that the database sends back.
   def self.add(options={})
-    if options["title"].blank? 
+    if options["name"].blank? 
       return false
     else
       self.add_to_database(options)
