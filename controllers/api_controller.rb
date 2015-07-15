@@ -46,7 +46,7 @@ end
 
 get "/delete_assignment" do
   @assignment_to_delete = Assignment.find(params["assignment_id"].to_i)
-  # Resource.delete(params["assignment_id"].to_i)
+  Resource.delete_by_assignment_id(params["assignment_id"].to_i)
   if @assignment_to_delete.delete
     "Assignment Deleted"
   else

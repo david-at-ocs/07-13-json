@@ -55,6 +55,11 @@ class Resource
     self.title.blank?
     self.description.blank?
   end
+  
+  def self.delete_by_assignment_id(assignment_id)
+    # table_name = self.class.to_s.pluralize.underscore
+    CONNECTION.execute("DELETE FROM resources WHERE assignment_id = #{assignment_id};")    
+  end 
     
   
   
