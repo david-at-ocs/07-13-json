@@ -69,3 +69,27 @@ get "/delete_assignment" do
     erb :"delete_assignment_form"
   end
 end
+
+get "/add_resource" do
+  @all_assignments = Assignment.all
+  erb :"add_resource_form"
+end
+
+get "/resource_added" do
+  new_resource_id = Resource.add({"title" => params["title"], "resource_link" => params["resource_link"], "type" => params["type"], "assignment_id" => params["assignment_id"]})
+  if new_resource_id
+    @new_resource = Resource.find(new_resource_id)
+    @new_resource_hash = @new_resource.make_hash
+    json @new_resource_hash
+  else
+    @error = true
+    erb :"add_assignments"
+  end
+end
+
+
+
+
+
+
+  

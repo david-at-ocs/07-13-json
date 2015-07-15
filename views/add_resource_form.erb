@@ -1,0 +1,21 @@
+<header>
+  <h1>Add Article or Video</h1>
+  <% if @error %>
+    <h3>There was an error adding the resource. Please try again.</h3>
+  <% end %>
+</header>
+
+<form action="/resource_added">
+  <input type="text" placeholder="Title" name="title">
+  <input type="text" placeholder="Link" name="resource_link">
+  <select name="type">
+    <option value="video">video</option>
+    <option value="article">article</option>
+  </select>
+  <select name="assignment_id">
+    <% @all_assignments.each do |assignment| %>
+      <option value="<%= assignment.id %>"><%= assignment.id %>. <%= assignment.title %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Add Assignment">
+</form>
