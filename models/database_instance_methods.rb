@@ -28,7 +28,7 @@ module DatabaseInstanceMethods
   def delete
     table_name = self.class.to_s.pluralize.underscore
     CONNECTION.execute("DELETE FROM #{table_name} WHERE id = #{@id};")    
-  end  
+  end
   
   
   

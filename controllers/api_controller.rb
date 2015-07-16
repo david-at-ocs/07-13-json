@@ -58,6 +58,7 @@ end
 get "/delete_assignment" do
   @assignment_to_delete = Assignment.find(params["assignment_id"].to_i)
   Resource.delete_by_assignment_id(params["assignment_id"].to_i)
+  Collaborator.delete_by_assignment_id(params["assignment_id"].to_i)
   if @assignment_to_delete.delete
     "Assignment Deleted"
   else
@@ -89,7 +90,7 @@ get "/add_collaborator" do
 end
 
 get "/collaborator_added" do
-  new_collab_id = Collaborator.add({"name" => params["name"], "assignment_id" => params["assignment_id"]})
+  new_collab_id = Collaborator.add_to_database({"name" => params["name"], "assignment_id" => params["assignment_id"]})
   if new_collab_id
     @new_collab = Collaborator.find(new_collab_id)
     @new_collab_hash = @new_collab.make_hash

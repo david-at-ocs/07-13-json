@@ -3,7 +3,7 @@ require_relative "database_instance_methods.rb"
 
 class Collaborator  
   attr_reader :id
-  attr_accessor :resource_link, :title, :assignment_id, :type
+  attr_accessor :name, :assignment_id
 
   extend DatabaseClassMethods
   include DatabaseInstanceMethods

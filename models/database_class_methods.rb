@@ -66,6 +66,14 @@ module DatabaseClassMethods
     self.new(results)
   end
   
+
+  
+  def delete_by_assignment_id(assignment_id)
+    table_name = self.to_s.pluralize.underscore
+    binding.pry
+    CONNECTION.execute("DELETE FROM #{table_name} WHERE assignment_id = #{assignment_id};")    
+  end 
+  
   
   
   # Get all of the rows for a table.
