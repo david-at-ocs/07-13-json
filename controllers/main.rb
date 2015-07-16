@@ -9,5 +9,5 @@ get "/assignments" do
 end
 
 get "/" do
-  erb :"main/home"
+  erb :"/home"
 end
